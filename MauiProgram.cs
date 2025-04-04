@@ -21,10 +21,12 @@ public static class MauiProgram
 		// Dependency-Injection Views
 		builder.Services.AddSingleton<MainMenuView>();
 		builder.Services.AddSingleton<CreditsView>();
+		builder.Services.AddTransient<NewGameView>();
 
 		// Dependency-Injection ViewModels
 		builder.Services.AddSingleton<MainMenuViewModel>();
 		builder.Services.AddSingleton<CreditsViewModel>();
+		builder.Services.AddTransient<NewGameViewModel>();
 
 		// Dependency-Injection Services
 

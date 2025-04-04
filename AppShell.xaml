@@ -15,5 +15,9 @@
         Title="Credits"
         ContentTemplate="{DataTemplate view:CreditsView}"
         Route="Credits"/>
+    <ShellContent
+        Title="New Game"
+        ContentTemplate="{DataTemplate view:NewGameView}"
+        Route="NewGame"/>
 
 </Shell>

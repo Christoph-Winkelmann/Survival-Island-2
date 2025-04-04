@@ -13,16 +13,16 @@ public partial class MainMenuViewModel : BaseViewModel
   }
 
   [RelayCommand]
-  public async Task NewGame()
+  public async Task GoToNewGame()
   {
-
+    await Shell.Current.GoToAsync($"{nameof(NewGameView)}", true);
   }
 
-  [RelayCommand]
-  public async Task LoadGame()
-  {
+  // [RelayCommand]
+  // public async Task LoadGame()
+  // {
 
-  }
+  // }
 
   [RelayCommand]
   public async Task GoToCredits()
@@ -33,7 +33,11 @@ public partial class MainMenuViewModel : BaseViewModel
   [RelayCommand]
   public async Task ExitToDesktop()
   {
-    var choice = await Shell.Current.DisplayActionSheet("Do you really want to quit?", "Cancel", null, "Yes", "No");
+    var choice = await Shell.Current.DisplayActionSheet(
+      "Do you really want to quit?",
+      "Cancel",
+      null,
+      "Yes", "No");
     if (choice == "Yes") Environment.Exit(0);
   }
 }

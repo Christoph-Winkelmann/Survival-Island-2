@@ -33,7 +33,8 @@
             <Button
                 Text="New Game"
                 Grid.Row="0"
-                MaximumWidthRequest="200"/>
+                MaximumWidthRequest="200"
+                Command="{Binding GoToNewGameCommand}"/>
             <Button
                 Text="Load Game"
                 Grid.Row="1"
