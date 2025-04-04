@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:survival_island_2.ViewModels"
+             x:DataType="viewmodel:MainMenuViewModel"
+             x:Class="survival_island_2.Views.MainMenuView"
+             Title="{Binding Title}">
+
+    <Grid
+        ColumnDefinitions="auto, auto, *"
+        RowDefinitions="auto, auto, *, auto"
+        RowSpacing="20"
+        ColumnSpacing="10"
+        Margin="10">
+        <Label
+            Text="Survival Island 2"
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="Center"
+            Style="{StaticResource Headline}"/>
+        <Label
+            Text="Main Menu"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="Center"
+            Style="{StaticResource SubHeadline}"/>
+        <Grid
+            ColumnDefinitions="*"
+            RowDefinitions="auto, auto, auto, auto"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            RowSpacing="7">
+            <Button
+                Text="New Game"
+                Grid.Row="0"
+                MaximumWidthRequest="200"/>
+            <Button
+                Text="Load Game"
+                Grid.Row="1"
+                MaximumWidthRequest="200"/>
+            <Button
+                Text="Credits"
+                Grid.Row="2"
+                MaximumWidthRequest="200"
+                Command="{Binding GoToCreditsCommand}"/>
+            <Button
+                Text="Exit to Desktop"
+                Grid.Row="3"
+                MaximumWidthRequest="200"
+                Command="{Binding ExitToDesktopCommand}"/>
+        </Grid>
+        <Image
+            Source="github_mark_white.png"
+            Grid.Row="3"
+            Grid.Column="0"
+            VerticalOptions="End"
+            HorizontalOptions="Start"
+            WidthRequest="50"/>
+        <Label
+            Text="Christoph-Winkelmann"
+            Grid.Row="3"
+            Grid.Column="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"/>
+        <Label
+            Text="Version 0.0.1"
+            Grid.Row="3"
+            Grid.Column="2"
+            HorizontalOptions="End"
+            VerticalOptions="End"/>
+    </Grid>
+
+</ContentPage>

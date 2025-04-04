@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:survival_island_2.ViewModels"
+             x:DataType="viewmodel:CreditsViewModel"
+             x:Class="survival_island_2.Views.CreditsView"
+             Title="{Binding Title}">
+    <Grid
+        RowDefinitions="auto, auto, auto"
+        RowSpacing="20">
+        <Label
+            Text="{Binding Title}"
+            Grid.Row="0"
+            Style="{StaticResource Headline}"/>
+        <Label
+            Text="These will be the credits..."
+            Grid.Row="1"
+            HorizontalOptions="Center"/>
+        <Button
+            Text="Back"
+            Command="{Binding GoToMainMenuCommand}"
+            Grid.Row="2"
+            WidthRequest="200"/>
+    </Grid>
+</ContentPage>
