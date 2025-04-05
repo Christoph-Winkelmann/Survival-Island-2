@@ -19,5 +19,25 @@
         Title="New Game"
         ContentTemplate="{DataTemplate view:NewGameView}"
         Route="NewGame"/>
+    <ShellContent
+        Title="Main Game"
+        ContentTemplate="{DataTemplate view:MainGameView}"
+        Route="MainGame"/>
+    <ShellContent
+        Title="Settings"
+        ContentTemplate="{DataTemplate view:SettingsView}"
+        Route="Settings"/>
+    <ShellContent
+        Title="Crafting"
+        ContentTemplate="{DataTemplate view:CraftingView}"
+        Route="Crafting"/>
+    <ShellContent
+        Title="Status"
+        ContentTemplate="{DataTemplate view:StatusView}"
+        Route="Status"/>
+    <ShellContent
+        Title="End Screen"
+        ContentTemplate="{DataTemplate view:EndScreenView}"
+        Route="EndScreen"/>
 
 </Shell>

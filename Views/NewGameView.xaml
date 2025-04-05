@@ -6,40 +6,53 @@
              x:Class="survival_island_2.Views.NewGameView"
              Title="{Binding Title}">
     <Grid
-        RowDefinitions="auto, auto, auto, auto, auto, auto, auto"
+        RowDefinitions="auto, auto, auto, auto"
         RowSpacing="20"
         Margin="10">
+
         <Label
             Text="{Binding Title}"
             Style="{StaticResource Headline}"
             HorizontalOptions="Center"
-            Grid.Row="0"/>
-        <Label
-            Text="Choose your character's name:"
-            HorizontalOptions="Center"
-            Grid.Row="1"/>
-        <Entry
-            Placeholder="Robinson"
-            Grid.Row="2"/>
-        <Label
-            Text="Choose your character's profession:"
-            HorizontalOptions="Center"
-            Grid.Row="3"/>
-        <Picker
-            Grid.Row="4">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Carpenter</x:String>
-                    <x:String>Cook</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <Button
-            Text="Start Adenture"
-            Grid.Row="5"/>
-        <Button
-            Text="Back"
-            Grid.Row="6"
-            Command="{Binding GoToMainMenuCommand}"/>
+            Grid.Row="0"
+            Margin="0, 0, 0, 0"/>
+
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Spacing="5">
+            <Label
+                Text="Choose your character's name:"
+                HorizontalOptions="Start"/>
+            <Entry
+                Placeholder="Robinson"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout
+            Grid.Row="2"
+            Spacing="5">
+            <Label
+                Text="Choose your character's profession:"
+                HorizontalOptions="Start"/>
+            <Picker>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Carpenter</x:String>
+                        <x:String>Cook</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout
+            Grid.Row="3"
+            Spacing="7">
+            <Button
+                Text="Start Adenture"
+                Command="{Binding GoToMainGameCommand}"/>
+            <Button
+                Text="Back"
+                Command="{Binding GoToMainMenuCommand}"/>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

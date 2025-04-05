@@ -1,6 +1,6 @@
 using System;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using survival_island_2.Views;
 
 namespace survival_island_2.ViewModels;
 
@@ -11,7 +11,12 @@ public partial class NewGameViewModel : BaseViewModel
     Title = "New Game";
   }
 
-  public List<string> professions = new List<string> { "Carpenter", "Cook" };
+
+  [RelayCommand]
+  public async Task GoToMainGame()
+  {
+    await Shell.Current.GoToAsync($"{nameof(MainGameView)}", true);
+  }
 
   [RelayCommand]
   public async Task GoToMainMenu()

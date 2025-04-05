@@ -1,19 +1,46 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "survival-island-2", "survival-island-2.csproj", "{BC30D290-C80B-B49D-AA1A-B65A0B355986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "survival_island_2_toolkit", "survival_island_2_toolkit\survival_island_2_toolkit.csproj", "{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Debug|x86.Build.0 = Debug|Any CPU
 		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|x64.Build.0 = Release|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC30D290-C80B-B49D-AA1A-B65A0B355986}.Release|x86.Build.0 = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|x64.Build.0 = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECA2856F-C769-4B93-B1C5-25C10FFC7F58}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

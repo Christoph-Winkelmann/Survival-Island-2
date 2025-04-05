@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:survival_island_2.ViewModels"
+             x:DataType="viewmodel:CraftingViewModel"
+             x:Class="survival_island_2.Views.CraftingView"
+             Title="CraftingView">
+
+    <Grid
+        RowDefinitions="auto, auto, auto, *, auto"
+        Margin="10"
+        RowSpacing="20">
+        <Label
+            Text="This is going to be a very long Header across the hole Width of the screen........."
+            Grid.Row="0"/>
+        <Image
+            Source="location_placeholder.png"
+            Grid.Row="1"/>
+        <Label
+            Text="{Binding Title}"
+            Style="{StaticResource Headline}"
+            Grid.Row="2"/>
+
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*, *"
+            RowDefinitions="*"
+            ColumnSpacing="10">
+            <ScrollView>
+                <Border
+                    Padding="7">
+                    <VerticalStackLayout
+                        Spacing="7">
+                        <Label
+                            Text="Tools"/>
+                        <Button
+                            Text="Axe"/>
+                        <Button
+                            Text="Basket"
+                            IsEnabled="False"/>
+                        <Label
+                            Text="Camp"/>
+                        <Button
+                            Text="Campfire"/>
+                        <Label
+                            Text="Raft"/>
+                        <Button
+                            Text="Body"/>
+                        <Button
+                            Text="Sail"/>
+                    </VerticalStackLayout>
+                </Border>
+            </ScrollView>
+            <ScrollView
+                Grid.Column="1">
+                <Border
+                    Grid.Column="1"
+                    Padding="7">
+                    <VerticalStackLayout
+                        Grid.Column="1">
+                        <Label
+                            Text="Awesome Crafting Recipe"/>
+                        <Button
+                            Text="Craft"/>
+                    </VerticalStackLayout>
+                </Border>
+            </ScrollView>
+        </Grid>
+
+        <Button
+            Text="Back"
+            Grid.Row="4"
+            Command="{Binding GoToMainGameViewCommand}"/>
+    </Grid>
+</ContentPage>
