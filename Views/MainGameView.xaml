@@ -5,44 +5,52 @@
              x:DataType="viewmodel:MainGameViewModel"
              x:Class="survival_island_2.Views.MainGameView"
              Title="{Binding Title}">
+  <Grid
+    RowDefinitions="auto, auto, auto, auto"
+    RowSpacing="20">
+    <Label
+      Text="{Binding Cu}"
+      Style="{StaticResource Headline}"/>
+    <HorizontalStackLayout
+      Grid.Row="1"
+      Spacing="10"
+      HorizontalOptions="Center">
+      <Label
+        Text="{Binding Player.PlayerName}"/>
+      <Label
+        Text="{Binding Player.ProfessionName}"/>
+    </HorizontalStackLayout>
+    <Image
+      Source="location_placeholder.png"
+      Grid.Row="2"/>
     <Grid
-        RowDefinitions="auto, auto, auto"
-        RowSpacing="20">
-        <Label
-            Text="Placeholder Location Name"
-            Grid.Row="0"
-            Style="{StaticResource Headline}"/>
-        <Image
-            Source="location_placeholder.png"
-            Grid.Row="1"/>
-        <Grid
-            Grid.Row="2"
-            RowDefinitions="auto, auto, auto, auto, auto, auto"
-            RowSpacing="7">
-            <Button
-                Text="Look around"
-                Grid.Row="0"
-                Command="{Binding LookAroundPromptCommand}"/>
-            <Button
-                Text="Harvest Resources"
-                Grid.Row="1"
-                Command="{Binding HarvestPromptCommand}"/>
-            <Button
-                Text="Travel"
-                Grid.Row="2"
-                Command="{Binding TravelPromptCommand}"/>
-            <Button
-                Text="Craft"
-                Grid.Row="3"
-                Command="{Binding GoToCraftingViewCommand}"/>
-            <Button
-                Text="Status"
-                Grid.Row="4"
-                Command="{Binding GoToStatusViewCommand}"/>
-            <Button
-                Text="Settings"
-                Grid.Row="5"
-                Command="{Binding GoToSettingsViewCommand}"/>
-        </Grid>
+      Grid.Row="3"
+      RowDefinitions="auto, auto, auto, auto, auto, auto"
+      RowSpacing="7">
+      <Button
+        Text="Look around"
+        Grid.Row="0"
+        Command="{Binding LookAroundPromptCommand}"/>
+      <Button
+        Text="Harvest Resources"
+        Grid.Row="1"
+        Command="{Binding HarvestPromptCommand}"/>
+      <Button
+        Text="Travel"
+        Grid.Row="2"
+        Command="{Binding TravelPromptCommand}"/>
+      <Button
+        Text="Craft"
+        Grid.Row="3"
+        Command="{Binding GoToCraftingViewCommand}"/>
+      <Button
+        Text="Status"
+        Grid.Row="4"
+        Command="{Binding GoToStatusViewCommand}"/>
+      <Button
+        Text="Settings"
+        Grid.Row="5"
+        Command="{Binding GoToSettingsViewCommand}"/>
     </Grid>
+  </Grid>
 </ContentPage>

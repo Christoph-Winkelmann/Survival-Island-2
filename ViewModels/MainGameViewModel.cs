@@ -1,14 +1,32 @@
-using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using survival_island_2.Models;
+using survival_island_2.Services;
 using survival_island_2.Views;
 
 namespace survival_island_2.ViewModels;
 
+[QueryProperty(nameof(Player), "NewPlayer")]
+[QueryProperty(nameof(IslandLocation), "CurrentIslandLocation")]
 public partial class MainGameViewModel : BaseViewModel
 {
-  public MainGameViewModel()
+  private GameService gameService;
+
+  [ObservableProperty]
+  Player player;
+
+  [ObservableProperty]
+  IslandLocation currentIslandLocation;
+
+  public List<IslandLocation> IslandLocations { get; set; }
+
+
+
+  public MainGameViewModel(GameService gameService)
   {
     Title = "Main Game";
+    this.gameService = gameService;
+    IslandLocations = gameService.GetIslandLocations();
   }
 
   [RelayCommand]

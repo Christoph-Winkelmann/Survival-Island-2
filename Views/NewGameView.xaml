@@ -5,54 +5,61 @@
              x:DataType="viewmodel:NewGameViewModel"
              x:Class="survival_island_2.Views.NewGameView"
              Title="{Binding Title}">
-    <Grid
-        RowDefinitions="auto, auto, auto, auto"
-        RowSpacing="20"
-        Margin="10">
+  <Grid
+    RowDefinitions="auto, auto, auto, auto"
+    RowSpacing="20"
+    Margin="10">
 
-        <Label
-            Text="{Binding Title}"
-            Style="{StaticResource Headline}"
-            HorizontalOptions="Center"
-            Grid.Row="0"
-            Margin="0, 0, 0, 0"/>
+    <Label
+      Text="{Binding Title}"
+      Style="{StaticResource Headline}"
+      HorizontalOptions="Center"
+      Grid.Row="0"
+      Margin="0, 0, 0, 0"/>
 
 
-        <VerticalStackLayout
-            Grid.Row="1"
-            Spacing="5">
-            <Label
-                Text="Choose your character's name:"
-                HorizontalOptions="Start"/>
-            <Entry
-                Placeholder="Robinson"/>
-        </VerticalStackLayout>
+    <VerticalStackLayout
+      Grid.Row="1"
+      Spacing="5">
+      <Label
+        Text="Choose your character's name:"
+        HorizontalOptions="Start"/>
+      <Entry
+        Placeholder="Robinson"
+        Text="{Binding InputPlayerName}"/>
+    </VerticalStackLayout>
 
-        <VerticalStackLayout
-            Grid.Row="2"
-            Spacing="5">
-            <Label
-                Text="Choose your character's profession:"
-                HorizontalOptions="Start"/>
-            <Picker>
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Carpenter</x:String>
-                        <x:String>Cook</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-        </VerticalStackLayout>
+    <VerticalStackLayout
+      Grid.Row="2"
+      Spacing="5">
+      <Label
+        Text="Choose your character's profession:"
+        HorizontalOptions="Start"/>
+      <Picker
+        SelectedItem="{Binding SelectedProfession}">
+        <Picker.ItemsSource>
+          <x:Array Type="{x:Type x:String}">
+            <x:String>Carpenter</x:String>
+            <x:String>Cook</x:String>
+            <x:String>Explorer</x:String>
+            <x:String>Soldier</x:String>
+            <x:String>Tourist</x:String>
+          </x:Array>
+        </Picker.ItemsSource>
+        <Picker.SelectedIndex>0</Picker.SelectedIndex>
+      </Picker>
+    </VerticalStackLayout>
 
-        <VerticalStackLayout
-            Grid.Row="3"
-            Spacing="7">
-            <Button
-                Text="Start Adenture"
-                Command="{Binding GoToMainGameCommand}"/>
-            <Button
-                Text="Back"
-                Command="{Binding GoToMainMenuCommand}"/>
-        </VerticalStackLayout>
-    </Grid>
+    <VerticalStackLayout
+      Grid.Row="3"
+      Spacing="7">
+      <Button
+        Text="Start Adenture"
+        Command="{Binding CreatePlayerAndStartGameCommand}"/>
+      <Button
+        Text="Back"
+        Command="{Binding GoToMainMenuCommand}"
+        CommandParameter="{Binding .}"/>
+    </VerticalStackLayout>
+  </Grid>
 </ContentPage>
