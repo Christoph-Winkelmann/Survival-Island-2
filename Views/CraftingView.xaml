@@ -5,24 +5,66 @@
              x:DataType="viewmodel:CraftingViewModel"
              x:Class="survival_island_2.Views.CraftingView"
              Title="CraftingView">
-  <ScrollView>
+  <ScrollView
+    MaximumWidthRequest="640"
+    VerticalScrollBarVisibility="Never">
     <Grid
-        RowDefinitions="auto, auto, auto, *, auto"
+        RowDefinitions="auto, auto, *, auto"
         Margin="10"
         RowSpacing="20">
-      <Label
-            Text="This is going to be a very long Header across the hole Width of the screen........."
-            Grid.Row="0"/>
-      <Image
+      <!--<Image
             Source="{Binding CurrentIslandLocation.LocationArtPath}"
-            Grid.Row="1"/>
+            Grid.Row="1"/>-->
       <Label
             Text="{Binding Title}"
             Style="{StaticResource Headline}"
-            Grid.Row="2"/>
-
+            Grid.Row="0"/>
       <Grid
-            Grid.Row="3"
+        Grid.Row="1"
+        ColumnDefinitions="*, *, *, *, auto">
+        <HorizontalStackLayout
+          Grid.Column="0"
+          Spacing="5">
+          <Label
+            Text="Logs: "/>
+          <Label
+            Text="{Binding ResourcesInventory.LogsCount}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+          Grid.Column="1"
+          Spacing="5">
+          <Label
+            Text="Sticks: "/>
+          <Label
+            Text="{Binding ResourcesInventory.SticksCount}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+          Grid.Column="2"
+          Spacing="5">
+          <Label
+            Text="Fibers: "/>
+          <Label
+            Text="{Binding ResourcesInventory.FibersCount}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+          Grid.Column="3"
+          Spacing="5">
+          <Label
+            Text="Stones: "/>
+          <Label
+            Text="{Binding ResourcesInventory.StonesCount}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+          Grid.Column="4"
+          Spacing="5">
+          <Label
+            Text="Food: "/>
+          <Label
+            Text="{Binding ResourcesInventory.FoodCount}"/>
+        </HorizontalStackLayout>
+      </Grid>
+      <Grid
+            Grid.Row="2"
             ColumnDefinitions="*, *"
             RowDefinitions="*"
             ColumnSpacing="10">
@@ -69,7 +111,7 @@
 
       <Button
             Text="Back"
-            Grid.Row="4"
+            Grid.Row="3"
             Command="{Binding GoToMainGameViewCommand}"/>
     </Grid>
   </ScrollView>

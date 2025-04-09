@@ -12,7 +12,6 @@ public class Player
   public double HungerMax { get; set; }
   public double HungerCurrent { get; set; }
 
-
   public Player(string professionName, double vitalityStat, double foragingStat, double craftingStat, double cookingStat, double luckStat)
   {
     ProfessionName = professionName;

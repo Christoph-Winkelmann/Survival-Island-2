@@ -12,6 +12,7 @@
         RowSpacing="20"
         ColumnSpacing="10"
         Margin="10">
+      
         <Label
             Text="Survival Island 2"
             Grid.Row="0"
@@ -29,25 +30,22 @@
             RowDefinitions="auto, auto, auto, auto"
             Grid.Row="2"
             Grid.ColumnSpan="3"
-            RowSpacing="7">
+            RowSpacing="7"
+          MaximumWidthRequest="640">
             <Button
                 Text="New Game"
                 Grid.Row="0"
-                MaximumWidthRequest="200"
                 Command="{Binding GoToNewGameCommand}"/>
             <Button
                 Text="Load Game"
-                Grid.Row="1"
-                MaximumWidthRequest="200"/>
+                Grid.Row="1"/>
             <Button
                 Text="Credits"
                 Grid.Row="2"
-                MaximumWidthRequest="200"
                 Command="{Binding GoToCreditsCommand}"/>
             <Button
                 Text="Exit to Desktop"
                 Grid.Row="3"
-                MaximumWidthRequest="200"
                 Command="{Binding ExitToDesktopCommand}"/>
         </Grid>
         <Image

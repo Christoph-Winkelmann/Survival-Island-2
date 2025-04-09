@@ -6,7 +6,9 @@
              x:Class="survival_island_2.Views.StatusView"
              Title="{Binding Title}">
 
-    <ScrollView>
+    <ScrollView
+      MaximumWidthRequest="640"
+      VerticalScrollBarVisibility="Never">
         <VerticalStackLayout
             Margin="10"
             Spacing="20">

@@ -6,26 +6,28 @@ using survival_island_2.Views;
 
 namespace survival_island_2.ViewModels;
 
-[QueryProperty(nameof(Player), "NewPlayer")]
-//[QueryProperty(nameof(CurrentIslandLocation), "CurrentIslandLocation")]
 public partial class MainGameViewModel : BaseViewModel
 {
   private GameService gameService;
 
-  [ObservableProperty]
-  Player player;
 
   [ObservableProperty]
   IslandLocation currentIslandLocation;
 
+  [ObservableProperty]
+  Inventory resourcesInventory;
+
+  [ObservableProperty]
+  Player player;
 
 
   public MainGameViewModel(GameService gameService)
   {
     Title = "Main Game";
     this.gameService = gameService;
-    var IslandLocations = gameService.GetIslandLocations();
-    CurrentIslandLocation = IslandLocations[0];
+    CurrentIslandLocation = gameService.CurrentIslandLocation;
+    ResourcesInventory = gameService.ResourcesInventory;
+    Player = gameService.MyPlayer;
   }
 
   [RelayCommand]
@@ -40,11 +42,13 @@ public partial class MainGameViewModel : BaseViewModel
   [RelayCommand]
   public async Task HarvestPrompt()
   {
+    string harvestYield = gameService.HarvestResources(CurrentIslandLocation, Player) ?? "Default string";
     await Shell.Current.DisplayAlert(
       "Harvest yield",
-      "This is a placeholder summary:\nWood: 10\nStone:3",
+      message: harvestYield,
       "Continue"
     );
+    ResourcesInventory = gameService.ResourcesInventory;
   }
 
   [RelayCommand]
@@ -61,24 +65,19 @@ public partial class MainGameViewModel : BaseViewModel
 
     if (destination != null)
     {
-      CurrentIslandLocation = destination;
       await Shell.Current.DisplayAlert(
         "Travel",
-        $"You have traveled to the {CurrentIslandLocation.LocationName}",
+        $"You have traveled to the {destination.LocationName}",
         "Continue"
       );
+      CurrentIslandLocation = destination;
     }
   }
 
   [RelayCommand]
   public async Task GoToCraftingView()
   {
-    await Shell.Current.GoToAsync($"{nameof(CraftingView)}", true, new Dictionary<string, object>()
-    {
-      {
-        "CurrentIslandLocation", CurrentIslandLocation
-      }
-    });
+    await Shell.Current.GoToAsync($"{nameof(CraftingView)}", true);
   }
 
   [RelayCommand]
