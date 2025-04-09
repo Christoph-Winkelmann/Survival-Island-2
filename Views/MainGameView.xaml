@@ -5,52 +5,57 @@
              x:DataType="viewmodel:MainGameViewModel"
              x:Class="survival_island_2.Views.MainGameView"
              Title="{Binding Title}">
-  <Grid
+
+
+  <ScrollView>
+    <Grid
     RowDefinitions="auto, auto, auto, auto"
     RowSpacing="20">
-    <Label
-      Text="{Binding Cu}"
+      <Label
+      Text="{Binding CurrentIslandLocation.LocationName}"
       Style="{StaticResource Headline}"/>
-    <HorizontalStackLayout
+      <HorizontalStackLayout
       Grid.Row="1"
       Spacing="10"
       HorizontalOptions="Center">
-      <Label
+        <Label
         Text="{Binding Player.PlayerName}"/>
-      <Label
+        <Label
         Text="{Binding Player.ProfessionName}"/>
-    </HorizontalStackLayout>
-    <Image
-      Source="location_placeholder.png"
+      </HorizontalStackLayout>
+      <Image
+      Source="{Binding CurrentIslandLocation.LocationArtPath}"
       Grid.Row="2"/>
-    <Grid
+      <Grid
       Grid.Row="3"
       RowDefinitions="auto, auto, auto, auto, auto, auto"
       RowSpacing="7">
-      <Button
+        <Button
         Text="Look around"
         Grid.Row="0"
         Command="{Binding LookAroundPromptCommand}"/>
-      <Button
+        <Button
         Text="Harvest Resources"
         Grid.Row="1"
         Command="{Binding HarvestPromptCommand}"/>
-      <Button
+        <Button
         Text="Travel"
         Grid.Row="2"
         Command="{Binding TravelPromptCommand}"/>
-      <Button
+        <Button
         Text="Craft"
         Grid.Row="3"
-        Command="{Binding GoToCraftingViewCommand}"/>
-      <Button
+        Command="{Binding GoToCraftingViewCommand}"
+          CommandParameter="{Binding CurrentIslandLocation}"/>
+        <Button
         Text="Status"
         Grid.Row="4"
         Command="{Binding GoToStatusViewCommand}"/>
-      <Button
+        <Button
         Text="Settings"
         Grid.Row="5"
         Command="{Binding GoToSettingsViewCommand}"/>
+      </Grid>
     </Grid>
-  </Grid>
+  </ScrollView>
 </ContentPage>

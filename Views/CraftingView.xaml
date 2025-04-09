@@ -5,71 +5,72 @@
              x:DataType="viewmodel:CraftingViewModel"
              x:Class="survival_island_2.Views.CraftingView"
              Title="CraftingView">
-
+  <ScrollView>
     <Grid
         RowDefinitions="auto, auto, auto, *, auto"
         Margin="10"
         RowSpacing="20">
-        <Label
+      <Label
             Text="This is going to be a very long Header across the hole Width of the screen........."
             Grid.Row="0"/>
-        <Image
-            Source="location_placeholder.png"
+      <Image
+            Source="{Binding CurrentIslandLocation.LocationArtPath}"
             Grid.Row="1"/>
-        <Label
+      <Label
             Text="{Binding Title}"
             Style="{StaticResource Headline}"
             Grid.Row="2"/>
 
-        <Grid
+      <Grid
             Grid.Row="3"
             ColumnDefinitions="*, *"
             RowDefinitions="*"
             ColumnSpacing="10">
-            <ScrollView>
-                <Border
+        <ScrollView>
+          <Border
                     Padding="7">
-                    <VerticalStackLayout
+            <VerticalStackLayout
                         Spacing="7">
-                        <Label
+              <Label
                             Text="Tools"/>
-                        <Button
+              <Button
                             Text="Axe"/>
-                        <Button
+              <Button
                             Text="Basket"
                             IsEnabled="False"/>
-                        <Label
+              <Label
                             Text="Camp"/>
-                        <Button
+              <Button
                             Text="Campfire"/>
-                        <Label
+              <Label
                             Text="Raft"/>
-                        <Button
+              <Button
                             Text="Body"/>
-                        <Button
+              <Button
                             Text="Sail"/>
-                    </VerticalStackLayout>
-                </Border>
-            </ScrollView>
-            <ScrollView
+            </VerticalStackLayout>
+          </Border>
+        </ScrollView>
+        <ScrollView
                 Grid.Column="1">
-                <Border
+          <Border
                     Grid.Column="1"
                     Padding="7">
-                    <VerticalStackLayout
+            <VerticalStackLayout
                         Grid.Column="1">
-                        <Label
+              <Label
                             Text="Awesome Crafting Recipe"/>
-                        <Button
+              <Button
                             Text="Craft"/>
-                    </VerticalStackLayout>
-                </Border>
-            </ScrollView>
-        </Grid>
+            </VerticalStackLayout>
+          </Border>
+        </ScrollView>
+      </Grid>
 
-        <Button
+      <Button
             Text="Back"
             Grid.Row="4"
             Command="{Binding GoToMainGameViewCommand}"/>
     </Grid>
+  </ScrollView>
 </ContentPage>

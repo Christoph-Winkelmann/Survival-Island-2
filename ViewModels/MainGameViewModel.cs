@@ -7,7 +7,7 @@ using survival_island_2.Views;
 namespace survival_island_2.ViewModels;
 
 [QueryProperty(nameof(Player), "NewPlayer")]
-[QueryProperty(nameof(IslandLocation), "CurrentIslandLocation")]
+//[QueryProperty(nameof(CurrentIslandLocation), "CurrentIslandLocation")]
 public partial class MainGameViewModel : BaseViewModel
 {
   private GameService gameService;
@@ -18,15 +18,14 @@ public partial class MainGameViewModel : BaseViewModel
   [ObservableProperty]
   IslandLocation currentIslandLocation;
 
-  public List<IslandLocation> IslandLocations { get; set; }
-
 
 
   public MainGameViewModel(GameService gameService)
   {
     Title = "Main Game";
     this.gameService = gameService;
-    IslandLocations = gameService.GetIslandLocations();
+    var IslandLocations = gameService.GetIslandLocations();
+    CurrentIslandLocation = IslandLocations[0];
   }
 
   [RelayCommand]
@@ -34,7 +33,7 @@ public partial class MainGameViewModel : BaseViewModel
   {
     await Shell.Current.DisplayAlert(
       "Look around",
-      "This is a placeholder description of the location.",
+      $"{CurrentIslandLocation.Description}",
       "Continue");
   }
 
@@ -51,18 +50,35 @@ public partial class MainGameViewModel : BaseViewModel
   [RelayCommand]
   public async Task TravelPrompt()
   {
-    await Shell.Current.DisplayActionSheet(
+    var choice = await Shell.Current.DisplayActionSheet(
       "Where do you want to go?",
       "Cancel",
       null,
-      "Example location 1", "Example location 2"
+      $"{CurrentIslandLocation.NeighbouringLocations[0]}",
+      $"{CurrentIslandLocation.NeighbouringLocations[1]}"
     );
+    var destination = gameService.GetIslandLocations().FirstOrDefault(l => l.LocationName == choice);
+
+    if (destination != null)
+    {
+      CurrentIslandLocation = destination;
+      await Shell.Current.DisplayAlert(
+        "Travel",
+        $"You have traveled to the {CurrentIslandLocation.LocationName}",
+        "Continue"
+      );
+    }
   }
 
   [RelayCommand]
   public async Task GoToCraftingView()
   {
-    await Shell.Current.GoToAsync($"{nameof(CraftingView)}", true);
+    await Shell.Current.GoToAsync($"{nameof(CraftingView)}", true, new Dictionary<string, object>()
+    {
+      {
+        "CurrentIslandLocation", CurrentIslandLocation
+      }
+    });
   }
 
   [RelayCommand]

@@ -13,7 +13,9 @@ public class GameService
       0.5,
       0.5,
       1,
-      0.2
+      0.2,
+      ["River", "Grasslands"],
+      "beach01.png"
       ),
     new IslandLocation(
       "Jungle",
@@ -23,7 +25,9 @@ public class GameService
       1,
       0.5,
       0.5,
-      0.3
+      0.3,
+      ["River", "Mountains"],
+      "jungle01.png"
       ),
     new IslandLocation(
       "River",
@@ -33,7 +37,9 @@ public class GameService
       0.5,
       1,
       0.5,
-      0.1
+      0.1,
+      ["Beach", "Jungle"],
+      "river01.png"
       ),
     new IslandLocation(
       "Grasslands",
@@ -43,16 +49,21 @@ public class GameService
       1,
       0.5,
       0.7,
-      0.1),
+      0.1,
+      ["Beach", "Mountains"],
+      "grasslands01.png"
+      ),
     new IslandLocation(
-      "Mountain",
+      "Mountains",
       "A rocky mountain with steep cliffs and a breathtaking view.",
       0.5,
       0.5,
       0.5,
       1,
       0.5,
-      0.4
+      0.4,
+      ["Grasslands", "Jungle"],
+      "mountains04.png"
       ),
   };
 
