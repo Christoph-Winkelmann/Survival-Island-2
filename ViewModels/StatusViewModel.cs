@@ -21,6 +21,12 @@ public partial class StatusViewModel : BaseViewModel
   [ObservableProperty]
   ObservableCollection<Craftable> availableItemsList;
 
+  [ObservableProperty]
+  string timeOfDay;
+
+  [ObservableProperty]
+  int currentDay;
+
   private GameService gameService;
   public StatusViewModel(GameService gameService)
   {
@@ -30,7 +36,8 @@ public partial class StatusViewModel : BaseViewModel
     ResourcesInventory = gameService.ResourcesInventory;
     CurrentIslandLocation = gameService.CurrentIslandLocation;
     AvailableItemsList = gameService.AvailableItemsList;
-
+    TimeOfDay = gameService.GetDaytimeString();
+    CurrentDay = gameService.CurrentDay;
   }
 
   [RelayCommand]

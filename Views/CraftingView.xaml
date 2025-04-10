@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:survival_island_2.ViewModels"
              xmlns:model="clr-namespace:survival_island_2.Models"
+             xmlns:partial="clr-namespace:survival_island_2.ViewsPartial"
              x:DataType="viewmodel:CraftingViewModel"
              x:Class="survival_island_2.Views.CraftingView"
              Title="CraftingView">
@@ -17,50 +18,8 @@
         Text="{Binding Title}"
         Style="{StaticResource Headline}"
         Grid.Row="0"/>
-      <Grid
-        Grid.Row="1"
-        ColumnDefinitions="*, *, *, *, auto">
-        <HorizontalStackLayout
-          Grid.Column="0"
-          Spacing="5">
-          <Label
-            Text="Logs: "/>
-          <Label
-            Text="{Binding ResourcesInventory.LogsCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="1"
-          Spacing="5">
-          <Label
-            Text="Sticks: "/>
-          <Label
-            Text="{Binding ResourcesInventory.SticksCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="2"
-          Spacing="5">
-          <Label
-            Text="Fibers: "/>
-          <Label
-            Text="{Binding ResourcesInventory.FibersCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="3"
-          Spacing="5">
-          <Label
-            Text="Stones: "/>
-          <Label
-            Text="{Binding ResourcesInventory.StonesCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="4"
-          Spacing="5">
-          <Label
-            Text="Food: "/>
-          <Label
-            Text="{Binding ResourcesInventory.FoodCount}"/>
-        </HorizontalStackLayout>
-      </Grid>
+      <partial:ResourceHeaderPartial
+        Grid.Row="1"/>
 
       <Grid
         Grid.Row="2"
@@ -107,8 +66,9 @@
             Padding="7">
             <Grid
               ColumnDefinitions="*, *, *, *, auto"
-              RowDefinitions="auto, auto, *, auto"
-              ColumnSpacing="10">
+              RowDefinitions="auto, auto, *, *"
+              ColumnSpacing="10"
+              RowSpacing="10">
               <Label
                 Text="{Binding SelectedCraftable.CraftableName}"
                 Grid.Row="0"
@@ -117,7 +77,8 @@
               <HorizontalStackLayout
                 Grid.Column="0"
                 Grid.Row="1"
-                Spacing="5">
+                Spacing="5"
+                VerticalOptions="Start">
                 <Label
                 Text="Logs:"/>
                 <Label
@@ -166,6 +127,7 @@
                 Text="Craft"
                 Grid.Row="3"
                 Grid.ColumnSpan="5"
+                VerticalOptions="End"
                 IsEnabled="{Binding SelectedItemIsCraftable}"
                 Command="{Binding CraftSelectedCraftableCommand}"/>
             </Grid>

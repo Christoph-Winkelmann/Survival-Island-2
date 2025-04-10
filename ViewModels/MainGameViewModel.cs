@@ -5,9 +5,18 @@ using survival_island_2.Services;
 using survival_island_2.Views;
 
 namespace survival_island_2.ViewModels;
-
+[QueryProperty(nameof(Refresh), "Refresh")]
 public partial class MainGameViewModel : BaseViewModel
 {
+  public bool Refresh
+  {
+    set
+    {
+      // Update Page
+      CurrentDaytime = gameService.CurrentDaytime;
+    }
+  }
+
   private GameService gameService;
 
 
@@ -20,6 +29,9 @@ public partial class MainGameViewModel : BaseViewModel
   [ObservableProperty]
   Player player;
 
+  [ObservableProperty]
+  TimeOfDay currentDaytime;
+
 
   public MainGameViewModel(GameService gameService)
   {
@@ -28,6 +40,7 @@ public partial class MainGameViewModel : BaseViewModel
     CurrentIslandLocation = gameService.CurrentIslandLocation;
     ResourcesInventory = gameService.ResourcesInventory;
     Player = gameService.MyPlayer;
+    CurrentDaytime = gameService.CurrentDaytime;
   }
 
   [RelayCommand]
@@ -48,7 +61,9 @@ public partial class MainGameViewModel : BaseViewModel
       message: harvestYield,
       "Continue"
     );
+    gameService.AdvanceDaytime(1);
     ResourcesInventory = gameService.ResourcesInventory;
+    CurrentDaytime = gameService.CurrentDaytime;
   }
 
   [RelayCommand]
@@ -71,6 +86,8 @@ public partial class MainGameViewModel : BaseViewModel
         "Continue"
       );
       CurrentIslandLocation = destination;
+      gameService.AdvanceDaytime(1);
+      CurrentDaytime = gameService.CurrentDaytime;
     }
   }
 
@@ -91,5 +108,6 @@ public partial class MainGameViewModel : BaseViewModel
   {
     await Shell.Current.GoToAsync($"{nameof(SettingsView)}", true);
   }
+
 
 }

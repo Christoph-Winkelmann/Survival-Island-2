@@ -38,7 +38,7 @@ public partial class MainMenuViewModel : BaseViewModel
       "Do you really want to quit?",
       "Cancel",
       null,
-      "Yes", "No");
+      "Yes");
     if (choice == "Yes") Environment.Exit(0);
   }
 }

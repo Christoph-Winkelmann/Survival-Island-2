@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using survival_island_2.Models;
 using survival_island_2.Services;
+using survival_island_2.Views;
 
 namespace survival_island_2.ViewModels;
 
@@ -28,6 +29,8 @@ public partial class CraftingViewModel : BaseViewModel
   [ObservableProperty]
   bool selectedItemIsCraftable;
 
+
+
   private GameService gameService;
 
 
@@ -46,7 +49,7 @@ public partial class CraftingViewModel : BaseViewModel
   [RelayCommand]
   public async Task GoToMainGameView()
   {
-    await Shell.Current.GoToAsync("..", true);
+    await Shell.Current.GoToAsync("..?Refresh=true", true);
   }
 
   [RelayCommand]
@@ -78,6 +81,7 @@ public partial class CraftingViewModel : BaseViewModel
     }
     SelectedCraftable = CraftableList[0];
     SelectedItemIsCraftable = ItemIsCraftable(SelectedCraftable);
+    gameService.AdvanceDaytime(1);
   }
 
   public bool ItemIsCraftable(Craftable craftable)

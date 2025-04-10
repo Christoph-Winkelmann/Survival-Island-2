@@ -1,6 +1,7 @@
 ﻿namespace survival_island_2.Services;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Graphics.Text;
 using survival_island_2.Models;
 using System.Collections.ObjectModel;
 
@@ -178,12 +179,15 @@ public partial class GameService : ObservableObject
       false),
   };
   public ObservableCollection<Craftable> AvailableItemsList { get; set; } = [];
-  public string TimeOfDay { get; set; }
+
+
+  public TimeOfDay CurrentDaytime { get; set; } = TimeOfDay.Morning;
   public int CurrentDay { get; set; } = 1;
 
 
   public GameService()
   {
+    // aus Datei laden
     CurrentIslandLocation = IslandLocationsList[0];
   }
 
@@ -202,9 +206,8 @@ public partial class GameService : ObservableObject
 
 
 
+
   // Inventory Stuff
-
-
   public string HarvestResources(IslandLocation location, Player myPlayer)
   {
     // Random Factor for calculation
@@ -225,7 +228,7 @@ public partial class GameService : ObservableObject
     var stonesYield = Math.Round(rndInt.Next(0, 11) * location.StonesMod * myPlayer.ForagingStat);
     var foodYield = Math.Round(rndInt.Next(0, 11) * location.FoodMod * myPlayer.ForagingStat * basketMod);
 
-     var newInventory = new Inventory()
+    var newInventory = new Inventory()
     {
       LogsCount = ResourcesInventory.LogsCount,
       SticksCount = ResourcesInventory.SticksCount,
@@ -271,5 +274,23 @@ public partial class GameService : ObservableObject
     ResourcesInventory = newInventory;
   }
 
+  // Timeflow
+  public void AdvanceDaytime(int workTime)
+  {
+    var timeInt = (int)CurrentDaytime;
+    timeInt += workTime;
+    if (timeInt > 5)
+    {
+      timeInt = timeInt % 5;
+      CurrentDay++;
+      // New Day logic (Hunger, food usage, etc.)
+    }
+    CurrentDaytime = (TimeOfDay)timeInt;
+
+    // if work time would advance to next day, worl cant be done
+  }
+
+  public string GetDaytimeString() => CurrentDaytime.ToString();
+  
 
 }

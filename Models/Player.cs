@@ -20,5 +20,7 @@ public class Player
     CraftingStat = craftingStat;
     CookingStat = cookingStat;
     LuckStat = luckStat;
+    HungerMax = vitalityStat * 100;
+    HungerCurrent = HungerMax;
   }
 }

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:survival_island_2.ViewModels"
+             xmlns:partial="clr-namespace:survival_island_2.ViewsPartial"
              x:DataType="viewmodel:MainGameViewModel"
              x:Class="survival_island_2.Views.MainGameView"
              Title="{Binding Title}">
@@ -9,13 +10,11 @@
 
   <ScrollView
     MaximumWidthRequest="640"
-    VerticalScrollBarVisibility="Never">
+    VerticalScrollBarVisibility="Never"
+    Margin="0, 20, 0 ,20">
     <Grid
     RowDefinitions="auto, auto, auto"
     RowSpacing="20">
-      <!--<Label
-      Text="{Binding CurrentIslandLocation.LocationName}"
-      Style="{StaticResource Headline}"/>-->
       <Grid
         Grid.Row="0"
         ColumnDefinitions="*, *, *, *, auto"
@@ -58,55 +57,14 @@
             <Label
               Text="Time of day:"/>
             <Label
-              Text="+Binding"/>
+              Text="{Binding CurrentDaytime}"/>
           </HorizontalStackLayout>
         </Grid>
-
-        <HorizontalStackLayout
-          Grid.Column="0"
+        
+        <partial:ResourceHeaderPartial
           Grid.Row="1"
-          Spacing="10">
-          <Label
-            Text="Logs: "/>
-          <Label
-            Text="{Binding ResourcesInventory.LogsCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="1"
-          Grid.Row="1"
-          Spacing="5">
-          <Label
-            Text="Sticks: "/>
-          <Label
-            Text="{Binding ResourcesInventory.SticksCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="2"
-          Grid.Row="1"
-          Spacing="5">
-          <Label
-            Text="Fibers: "/>
-          <Label
-            Text="{Binding ResourcesInventory.FibersCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="3"
-          Grid.Row="1"
-          Spacing="5">
-          <Label
-            Text="Stones: "/>
-          <Label
-            Text="{Binding ResourcesInventory.StonesCount}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout
-          Grid.Column="4"
-          Grid.Row="1"
-          Spacing="5">
-          <Label
-            Text="Food: "/>
-          <Label
-            Text="{Binding ResourcesInventory.FoodCount}"/>
-        </HorizontalStackLayout>
+          Grid.ColumnSpan="5"/>
+        
       </Grid>
       <Image
         Source="{Binding CurrentIslandLocation.LocationArtPath}"

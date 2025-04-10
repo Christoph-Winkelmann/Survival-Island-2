@@ -27,7 +27,7 @@
         HorizontalOptions="Start"/>
       <Entry
         Placeholder="Robinson"
-        Text="{Binding InputPlayerName}"/>
+        Text="{Binding Path=InputPlayerName, Mode=OneWayToSource}"/>
     </VerticalStackLayout>
 
     <VerticalStackLayout
@@ -47,7 +47,6 @@
             <x:String>Tourist</x:String>
           </x:Array>
         </Picker.ItemsSource>
-        <Picker.SelectedIndex>0</Picker.SelectedIndex>
       </Picker>
     </VerticalStackLayout>
 

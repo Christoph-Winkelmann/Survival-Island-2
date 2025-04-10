@@ -6,8 +6,8 @@ namespace survival_island_2.ViewModels;
 
 public partial class NewGameViewModel : BaseViewModel
 {
-  public string SelectedProfession { get; set; }
-  public string InputPlayerName { get; set; }
+  public string SelectedProfession { get; set; } = "Carpenter";
+  public string InputPlayerName { get; set; } = "Robinson";
   public GameService MyGameService { get; set; }
 
   public NewGameViewModel(GameService gameService)

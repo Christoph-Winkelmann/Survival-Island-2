@@ -79,4 +79,16 @@
 	  <Folder Include="Data\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="ViewsPartial\ResourceHeaderPartial.xaml.cs">
+	    <DependentUpon>ResourceHeaderPartial.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="ViewsPartial\ResourceHeaderPartial.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

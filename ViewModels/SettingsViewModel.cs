@@ -27,7 +27,7 @@ public partial class SettingsViewModel : BaseViewModel
   public async Task GoToMainMenu()
   {
     var choice = await Shell.Current.DisplayActionSheet(
-      "Unsaved progress will be lost. Really go back to Main Menu?",
+      "Really go back to Main Menu?",
       "Cancel",
       null,
       "Yes"
@@ -39,7 +39,7 @@ public partial class SettingsViewModel : BaseViewModel
   public async Task ExitToDesktop()
   {
     var choice = await Shell.Current.DisplayActionSheet(
-      "Unsaved progress will be lost. Really exit to Desktop?",
+      "Really exit to Desktop?",
       "Cancel",
       null,
       "Yes"
