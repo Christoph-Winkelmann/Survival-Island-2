@@ -26,8 +26,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainGameView>();
 		builder.Services.AddSingleton<SettingsView>();
 		builder.Services.AddTransient<CraftingView>();
-		builder.Services.AddSingleton<StatusView>();
-		builder.Services.AddSingleton<EndScreenView>();
+		builder.Services.AddTransient<StatusView>();
+		builder.Services.AddTransient<EndScreenView>();
 
 		// Dependency-Injection ViewModels
 		builder.Services.AddSingleton<MainMenuViewModel>();
@@ -36,8 +36,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainGameViewModel>();
 		builder.Services.AddSingleton<SettingsViewModel>();
 		builder.Services.AddTransient<CraftingViewModel>();
-		builder.Services.AddSingleton<StatusViewModel>();
-		builder.Services.AddSingleton<EndScreenViewModel>();
+		builder.Services.AddTransient<StatusViewModel>();
+		builder.Services.AddTransient<EndScreenViewModel>();
 
 		// Dependency-Injection Services
 		builder.Services.AddSingleton<GameService>();

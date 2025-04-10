@@ -14,10 +14,10 @@ public partial class GameService : ObservableObject
     new IslandLocation(
       "Beach",
       "A sunny beach with palm trees and a clear blue ocean.",
-      1,
-      1,
       0.5,
-      0.5,
+      2,
+      0.25,
+      1,
       1,
       0.2,
       ["River", "Grasslands"],
@@ -26,11 +26,11 @@ public partial class GameService : ObservableObject
     new IslandLocation(
       "Jungle",
       "A dense jungle with tall trees and exotic plants.",
+      2,
       1,
       1,
+      0.25,
       1,
-      0.5,
-      0.5,
       0.3,
       ["River", "Mountains"],
       "jungle01_banner.png"
@@ -39,10 +39,10 @@ public partial class GameService : ObservableObject
       "River",
       "A flowing river with clear water and fish.",
       0.5,
+      0.25,
       1,
-      0.5,
       1,
-      0.5,
+      2,
       0.1,
       ["Beach", "Jungle"],
       "river01_banner.png"
@@ -50,11 +50,11 @@ public partial class GameService : ObservableObject
     new IslandLocation(
       "Grasslands",
       "Flowery fields as far as the eye can see.",
-      0.2,
+      0.25,
+      0.5,
+      2,
       0.5,
       1,
-      0.5,
-      0.7,
       0.1,
       ["Beach", "Mountains"],
       "grasslands01_banner.png"
@@ -65,8 +65,8 @@ public partial class GameService : ObservableObject
       0.5,
       0.5,
       0.5,
-      1,
-      0.5,
+      2,
+      0.25,
       0.4,
       ["Grasslands", "Jungle"],
       "mountains04_banner.png"
@@ -123,7 +123,8 @@ public partial class GameService : ObservableObject
       10,
       0,
       "Axe for chopping trees and gathering logs.\nIncreases the amount of logs gathered when harvesting resources.",
-      false),
+      false,
+      2),
     new Craftable(
       1,
       "Basket",
@@ -133,7 +134,8 @@ public partial class GameService : ObservableObject
       0,
       20,
       "Basket for gathering small resources.\nIncreases the amount of sticks, fibers and food gathered when harvesting resources.",
-      false),
+      false,
+      1.25),
     new Craftable(
       2,
       "Campfire",
@@ -179,6 +181,7 @@ public partial class GameService : ObservableObject
   public string TimeOfDay { get; set; }
   public int CurrentDay { get; set; } = 1;
 
+
   public GameService()
   {
     CurrentIslandLocation = IslandLocationsList[0];
@@ -204,16 +207,25 @@ public partial class GameService : ObservableObject
 
   public string HarvestResources(IslandLocation location, Player myPlayer)
   {
+    // Random Factor for calculation
+    var rndInt = new Random();
+
+    // Tools Modifiers, if tools are present
+    double axeMod = 1;
+    if (AvailableItemsList.ToList().Any(i => i.CraftableName == "Axe")) axeMod = 2;
+    double basketMod = 1;
+    if (AvailableItemsList.ToList().Any(i => i.CraftableName == "Basket")) basketMod = 1.5;
+
     // implement cases where axe and/or basket are available
 
     // calculate yields based on location and player stats
-    var logsYield = Math.Floor(1000 * location.LogsMod * myPlayer.ForagingStat);
-    var sticksYield = Math.Floor(1000 * location.SticksMod * myPlayer.ForagingStat);
-    var fibersYield = Math.Floor(1000 * location.FibersMod * myPlayer.ForagingStat);
-    var stonesYield = Math.Floor(1000 * location.StonesMod * myPlayer.ForagingStat);
-    var foodYield = Math.Floor(1000 * location.FoodMod * myPlayer.ForagingStat);
+    var logsYield = Math.Round(rndInt.Next(0, 11) * location.LogsMod * myPlayer.ForagingStat * axeMod);
+    var sticksYield = Math.Round(rndInt.Next(0, 11) * location.SticksMod * myPlayer.ForagingStat * basketMod);
+    var fibersYield = Math.Round(rndInt.Next(0, 11) * location.FibersMod * myPlayer.ForagingStat * basketMod);
+    var stonesYield = Math.Round(rndInt.Next(0, 11) * location.StonesMod * myPlayer.ForagingStat);
+    var foodYield = Math.Round(rndInt.Next(0, 11) * location.FoodMod * myPlayer.ForagingStat * basketMod);
 
-    var newInventory = new Inventory()
+     var newInventory = new Inventory()
     {
       LogsCount = ResourcesInventory.LogsCount,
       SticksCount = ResourcesInventory.SticksCount,
