@@ -1,6 +1,8 @@
-﻿namespace survival_island_2.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class Inventory
+namespace survival_island_2.Models;
+
+public partial class Inventory : ObservableObject
 {
   public double LogsCount { get; set; } = 0;
   public double SticksCount { get; set; } = 0;

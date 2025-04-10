@@ -7,160 +7,161 @@
              x:DataType="viewmodel:StatusViewModel"
              x:Class="survival_island_2.Views.StatusView"
              Title="{Binding Title}">
-
-  <ScrollView
-      MaximumWidthRequest="640"
+  <VerticalStackLayout
+    MaximumWidthRequest="640"
+    Spacing="20">
+    <ScrollView
       VerticalScrollBarVisibility="Never">
-    <VerticalStackLayout
-      Margin="10"
+      <VerticalStackLayout
       Spacing="20">
-      <Label
+        <Label
         Text="{Binding Title}"
         Style="{StaticResource Headline}"/>
 
-      <!-- Place for Player related things -->
-      <Border
+        <!-- Place for Player related things -->
+        <Border
         Padding="20, 10, 20, 10">
-        <VerticalStackLayout
+          <VerticalStackLayout
           Spacing="10">
-          <Label
+            <Label
             Text="Player Stats"
             Style="{StaticResource SubHeadline}"/>
-          <Grid
+            <Grid
             ColumnDefinitions="*, *, auto"
             RowDefinitions="auto"
             ColumnSpacing="10">
-            <HorizontalStackLayout
+              <HorizontalStackLayout
               Grid.Column="0"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Name:"/>
-              <Label
+                <Label
                 Text="{Binding Player.PlayerName}"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
+              </HorizontalStackLayout>
+              <HorizontalStackLayout
               Grid.Column="1"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Profession"/>
-              <Label
+                <Label
                 Text="{Binding Player.ProfessionName}"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
+              </HorizontalStackLayout>
+              <HorizontalStackLayout
               Grid.Column="2"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Hunger:"/>
-              <HorizontalStackLayout>
-                <Label
+                <HorizontalStackLayout>
+                  <Label
                   Text="{Binding Player.HungerCurrent}"/>
-                <Label
+                  <Label
                   Text="/"/>
-                <Label
+                  <Label
                   Text="{Binding Player.HungerMax}"/>
+                </HorizontalStackLayout>
               </HorizontalStackLayout>
-            </HorizontalStackLayout>
-          </Grid>
-        </VerticalStackLayout>
-      </Border>
+            </Grid>
+          </VerticalStackLayout>
+        </Border>
 
-      <!-- Place for Global stats -->
-      <Border
+        <!-- Place for Global stats -->
+        <Border
         Padding="20, 10, 20, 10">
-        <VerticalStackLayout
+          <VerticalStackLayout
           Spacing="10">
-          <Label
+            <Label
             Text="Global Stats"
             Style="{StaticResource SubHeadline}"/>
-          <Grid
+            <Grid
             ColumnDefinitions="*, *, auto"
             RowDefinitions="auto"
             ColumnSpacing="10">
-            <HorizontalStackLayout
+              <HorizontalStackLayout
               Grid.Column="0"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Days survived:"/>
-              <Label
+                <Label
                 Text="{Binding CurrentDay}"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
+              </HorizontalStackLayout>
+              <HorizontalStackLayout
               Grid.Column="1"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Time of day:"/>
-              <Label
+                <Label
                 Text="{Binding TimeOfDay}"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
+              </HorizontalStackLayout>
+              <HorizontalStackLayout
               Grid.Column="2"
               Grid.Row="0"
               Spacing="5">
-              <Label
+                <Label
                 Text="Current location:"/>
-              <Label
+                <Label
                 Text="{Binding CurrentIslandLocation.LocationName}"/>
-            </HorizontalStackLayout>
-          </Grid>
-        </VerticalStackLayout>
-      </Border>
+              </HorizontalStackLayout>
+            </Grid>
+          </VerticalStackLayout>
+        </Border>
 
-      <!-- Place for Inventory related things -->
-      <Border
+        <!-- Place for Inventory related things -->
+        <Border
         Padding="20, 10, 20, 10">
-        <VerticalStackLayout
+          <VerticalStackLayout
           Spacing="10">
-          <Label
+            <Label
             Text="Inventory"
             Style="{StaticResource SubHeadline}"/>
-          <partial:ResourceHeaderPartial/>
-        </VerticalStackLayout>
-      </Border>
+            <partial:ResourceHeaderPartial/>
+          </VerticalStackLayout>
+        </Border>
 
-      <!-- Place for Crafting related things -->
-      <Border
+        <!-- Place for Crafting related things -->
+        <Border
         Padding="20, 10, 20, 10">
-        <VerticalStackLayout
+          <VerticalStackLayout
           Spacing="10">
-          <Label
+            <Label
             Text="Crafting Summary"
             Style="{StaticResource SubHeadline}"/>
-          <CollectionView
+            <CollectionView
             ItemsSource="{Binding AvailableItemsList}">
-            <CollectionView.ItemsLayout>
-              <LinearItemsLayout
+              <CollectionView.ItemsLayout>
+                <LinearItemsLayout
                 Orientation="Vertical"
                 ItemSpacing="7"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-              <DataTemplate x:DataType="model:Craftable">
-                <VerticalStackLayout
+              </CollectionView.ItemsLayout>
+              <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Craftable">
+                  <VerticalStackLayout
                   Padding="0, 0, 0, 20">
-                <Grid
+                    <Grid
                     ColumnDefinitions="*, 2*">
-                    <Label
+                      <Label
                       Grid.Column="0"
                       Text="{Binding CraftableName}"
                       Style="{StaticResource SubHeadline}"
                       VerticalOptions="Center"/>
-                    <Label
+                      <Label
                       Grid.Column="1"
                       Text="{Binding Description}"/>
-                  </Grid>
-                </VerticalStackLayout>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
-        </VerticalStackLayout>
-      </Border>
-      <Button
-        Text="Back"
-        Command="{Binding GoToMainGameViewCommand}"/>
-    </VerticalStackLayout>
-  </ScrollView>
+                    </Grid>
+                  </VerticalStackLayout>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </VerticalStackLayout>
+        </Border>
+      </VerticalStackLayout>
+    </ScrollView>
+    <Button
+      Text="Back"
+      Command="{Binding GoToMainGameViewCommand}"/>
+  </VerticalStackLayout>
 </ContentPage>

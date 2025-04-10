@@ -14,6 +14,8 @@ public partial class MainGameViewModel : BaseViewModel
     {
       // Update Page
       CurrentDaytime = gameService.CurrentDaytime;
+      Player = gameService.MyPlayer;
+      ResourcesInventory = gameService.ResourcesInventory;
     }
   }
 
@@ -55,15 +57,15 @@ public partial class MainGameViewModel : BaseViewModel
   [RelayCommand]
   public async Task HarvestPrompt()
   {
-    string harvestYield = gameService.HarvestResources(CurrentIslandLocation, Player) ?? "Default string";
-    await Shell.Current.DisplayAlert(
-      "Harvest yield",
-      message: harvestYield,
-      "Continue"
-    );
-    gameService.AdvanceDaytime(1);
+    await gameService.HarvestResources(CurrentIslandLocation, Player);
+    
     ResourcesInventory = gameService.ResourcesInventory;
     CurrentDaytime = gameService.CurrentDaytime;
+    
+    if (gameService.CheckGameOver())
+    {
+      await Shell.Current.GoToAsync(nameof(EndScreenView), true);
+    }
   }
 
   [RelayCommand]
@@ -85,9 +87,14 @@ public partial class MainGameViewModel : BaseViewModel
         $"You have traveled to the {destination.LocationName}",
         "Continue"
       );
+      gameService.DecreaseHunger(10);
       CurrentIslandLocation = destination;
       gameService.AdvanceDaytime(1);
       CurrentDaytime = gameService.CurrentDaytime;
+      if (gameService.CheckGameOver())
+      {
+        await Shell.Current.GoToAsync(nameof(EndScreenView), true);
+      }
     }
   }
 

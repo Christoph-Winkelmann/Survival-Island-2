@@ -1,6 +1,8 @@
-﻿namespace survival_island_2.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class IslandLocation
+namespace survival_island_2.Models;
+
+public partial class IslandLocation : ObservableObject
 {
   public string LocationName { get; set; } = "DefaultLocation";
   public string Description { get; set; } = "Default description";

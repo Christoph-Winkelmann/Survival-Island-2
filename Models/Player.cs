@@ -1,6 +1,8 @@
-﻿namespace survival_island_2.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class Player
+namespace survival_island_2.Models;
+
+public partial class Player : ObservableObject
 {
   public string PlayerName { get; set; } = "Robinson";
   public string ProfessionName { get; set; } = String.Empty;
@@ -10,7 +12,9 @@ public class Player
   public double CookingStat { get; set; }
   public double LuckStat { get; set; }
   public double HungerMax { get; set; }
-  public double HungerCurrent { get; set; }
+
+  [ObservableProperty]
+  public double hungerCurrent;
 
   public Player(string professionName, double vitalityStat, double foragingStat, double craftingStat, double cookingStat, double luckStat)
   {

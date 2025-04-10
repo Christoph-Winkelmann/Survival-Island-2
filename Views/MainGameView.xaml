@@ -12,93 +12,117 @@
     MaximumWidthRequest="640"
     VerticalScrollBarVisibility="Never"
     Margin="0, 20, 0 ,20">
-    <Grid
-    RowDefinitions="auto, auto, auto"
-    RowSpacing="20">
-      <Grid
-        Grid.Row="0"
-        ColumnDefinitions="*, *, *, *, auto"
-        RowDefinitions="auto, auto">
+    <VerticalStackLayout
+      x:Name="OuterFrame"
+      Spacing="20">
+      <Border
+        Padding="10">
         <Grid
-          Grid.ColumnSpan="5"
-          ColumnDefinitions="*, *, *, auto"
-          RowDefinitions="auto">
+        x:Name="HeaderGrid"
+        Grid.Row="0"
+        ColumnDefinitions="*"
+        RowDefinitions="auto, auto, auto"
+        RowSpacing="5">
+
           <HorizontalStackLayout
-            Grid.Column="0"
-            Grid.Row="0"
+          x:Name="PlayerStats"
+          HorizontalOptions="Start"
+          Spacing="20">
+            <HorizontalStackLayout
             Spacing="5">
-            <Label
-              Text="Player Name:"/>
-            <Label
+              <Label
+              Text="Name:"/>
+              <Label
               Text="{Binding Player.PlayerName}"/>
-          </HorizontalStackLayout>
-          <HorizontalStackLayout
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
             Grid.Column="1"
-            Grid.Row="0"
             Spacing="5">
-            <Label
+              <Label
               Text="Profession:"/>
-            <Label
+              <Label
               Text="{Binding Player.ProfessionName}"/>
-          </HorizontalStackLayout>
-          <HorizontalStackLayout
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
             Grid.Column="2"
-            Grid.Row="0"
             Spacing="5">
-            <Label
-              Text="Location:"/>
-            <Label
-              Text="{Binding CurrentIslandLocation.LocationName}"/>
+              <Label
+              Text="Hunger:"/>
+              <HorizontalStackLayout>
+                <Label
+                Text="{Binding Player.HungerCurrent}"/>
+                <Label
+              Text="/"/>
+                <Label
+                Text="{Binding Player.HungerMax}"/>
+              </HorizontalStackLayout>
+            </HorizontalStackLayout>
           </HorizontalStackLayout>
+
           <HorizontalStackLayout
-            Grid.Column="3"
-            Grid.Row="0"
-            Spacing="5">
-            <Label
-              Text="Time of day:"/>
-            <Label
-              Text="{Binding CurrentDaytime}"/>
-          </HorizontalStackLayout>
-        </Grid>
-        
-        <partial:ResourceHeaderPartial
           Grid.Row="1"
+          HorizontalOptions="Start"
+          Spacing="20">
+            <HorizontalStackLayout
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="1"
+            Spacing="5">
+              <Label
+              Text="Location:"/>
+              <Label
+              Text="{Binding CurrentIslandLocation.LocationName}"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
+            Grid.Column="2"
+            Grid.Row="1"
+            Spacing="5">
+              <Label
+              Text="Time of day:"/>
+              <Label
+              Text="{Binding CurrentDaytime}"/>
+            </HorizontalStackLayout>
+          </HorizontalStackLayout>
+
+          <partial:ResourceHeaderPartial
+          Grid.Row="2"
           Grid.ColumnSpan="5"/>
-        
-      </Grid>
+
+        </Grid>
+      </Border>
       <Image
         Source="{Binding CurrentIslandLocation.LocationArtPath}"
         Grid.Row="1"/>
-      <Grid
+        <Grid
         Grid.Row="2"
         RowDefinitions="auto, auto, auto, auto, auto, auto"
         RowSpacing="7">
-        <Button
+          <Button
           Text="Look around"
           Grid.Row="0"
           Command="{Binding LookAroundPromptCommand}"/>
-        <Button
+          <Button
           Text="Harvest Resources"
           Grid.Row="1"
           Command="{Binding HarvestPromptCommand}"/>
-        <Button
+          <Button
           Text="Travel"
           Grid.Row="2"
           Command="{Binding TravelPromptCommand}"/>
-        <Button
+          <Button
           Text="Craft"
           Grid.Row="3"
           Command="{Binding GoToCraftingViewCommand}"
           CommandParameter="{Binding CurrentIslandLocation}"/>
-        <Button
+          <Button
           Text="Status"
           Grid.Row="4"
           Command="{Binding GoToStatusViewCommand}"/>
-        <Button
+          <Button
           Text="Settings"
           Grid.Row="5"
           Command="{Binding GoToSettingsViewCommand}"/>
-      </Grid>
-    </Grid>
+        </Grid>
+    </VerticalStackLayout>
   </ScrollView>
 </ContentPage>

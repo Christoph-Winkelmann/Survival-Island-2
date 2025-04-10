@@ -3,6 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Graphics.Text;
 using survival_island_2.Models;
+using survival_island_2.Views;
 using System.Collections.ObjectModel;
 
 public partial class GameService : ObservableObject
@@ -179,10 +180,10 @@ public partial class GameService : ObservableObject
       false),
   };
   public ObservableCollection<Craftable> AvailableItemsList { get; set; } = [];
-
-
   public TimeOfDay CurrentDaytime { get; set; } = TimeOfDay.Morning;
   public int CurrentDay { get; set; } = 1;
+  public bool Victory { get; set; } = false;
+  public bool GameOver { get; set; } = false;
 
 
   public GameService()
@@ -208,7 +209,7 @@ public partial class GameService : ObservableObject
 
 
   // Inventory Stuff
-  public string HarvestResources(IslandLocation location, Player myPlayer)
+  public async Task HarvestResources(IslandLocation location, Player myPlayer)
   {
     // Random Factor for calculation
     var rndInt = new Random();
@@ -243,15 +244,23 @@ public partial class GameService : ObservableObject
     newInventory.StonesCount += stonesYield;
     newInventory.FoodCount += foodYield;
 
-    ResourcesInventory = newInventory;
-
     // return a string with the yields for UI
-    return
+    var harvestYield =
       $"Logs: +{logsYield}\n" +
       $"Sticks: +{sticksYield}\n" +
       $"Fibers: +{fibersYield}\n" +
       $"Stones: +{stonesYield}\n" +
       $"Food: +{foodYield}";
+
+    await Shell.Current.DisplayAlert(
+      "Harvest yield",
+      message: harvestYield,
+      "Continue"
+    );
+
+    ResourcesInventory = newInventory;
+    DecreaseHunger(10);
+    AdvanceDaytime(1);
   }
 
   public void SpendResources(Craftable craftable)
@@ -281,16 +290,73 @@ public partial class GameService : ObservableObject
     timeInt += workTime;
     if (timeInt > 5)
     {
-      timeInt = timeInt % 5;
-      CurrentDay++;
-      // New Day logic (Hunger, food usage, etc.)
+      EndDay(timeInt);
     }
-    CurrentDaytime = (TimeOfDay)timeInt;
+    else CurrentDaytime = (TimeOfDay)timeInt;
 
-    // if work time would advance to next day, worl cant be done
+    // if work time would advance to next day, work cant be done
   }
 
   public string GetDaytimeString() => CurrentDaytime.ToString();
   
+  public void DecreaseHunger(int amount)
+  {
+    MyPlayer.HungerCurrent -= amount;
+    if (MyPlayer.HungerCurrent <= 0) MyPlayer.HungerCurrent = 0;
+  }
 
+  public void EatFood()
+  {
+    // eat food until full or food empty
+    var neededFood = MyPlayer.HungerMax - MyPlayer.HungerCurrent;
+
+    if (ResourcesInventory.FoodCount < neededFood) // less food than needed
+    {
+      MyPlayer.HungerCurrent += ResourcesInventory.FoodCount;
+      ResourcesInventory.FoodCount = 0;
+    }
+    else if (ResourcesInventory.FoodCount > neededFood) // more food than needed
+    {
+      MyPlayer.HungerCurrent = MyPlayer.HungerMax;
+      ResourcesInventory.FoodCount -= neededFood;
+    }
+  }
+
+  public async Task EndDay(int timeInt)
+  {
+    EatFood();
+    CurrentDay++;
+    CurrentDaytime = (TimeOfDay)(timeInt % 5);
+    if (CheckVictory())
+    {
+      await Shell.Current.GoToAsync(nameof(EndScreenView), true);
+    }
+    await Shell.Current.DisplayAlert(
+      "The day ends...",
+      "You had enough food to survive.",
+      "Continue"
+      );
+  }
+
+  public bool CheckVictory()
+  {
+    if (AvailableItemsList.ToList().Any(i => i.Id == 3) &&
+      AvailableItemsList.ToList().Any(i => i.Id == 4) &&
+      AvailableItemsList.ToList().Any(i => i.Id == 5))
+    {
+      Victory = true;
+      return true;
+    }
+    return false;
+  }
+
+  public bool CheckGameOver()
+  {
+    if (MyPlayer.HungerCurrent == 0)
+    {
+      GameOver = true;
+      return true;
+    }
+    return false;
+  }
 }

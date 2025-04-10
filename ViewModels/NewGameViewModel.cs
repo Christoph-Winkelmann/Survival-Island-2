@@ -7,7 +7,7 @@ namespace survival_island_2.ViewModels;
 public partial class NewGameViewModel : BaseViewModel
 {
   public string SelectedProfession { get; set; } = "Carpenter";
-  public string InputPlayerName { get; set; } = "Robinson";
+  public string InputPlayerName { get; set; }
   public GameService MyGameService { get; set; }
 
   public NewGameViewModel(GameService gameService)
@@ -20,6 +20,7 @@ public partial class NewGameViewModel : BaseViewModel
   [RelayCommand]
   public async Task CreatePlayerAndStartGame()
   {
+    if (InputPlayerName == null) InputPlayerName = "Robinson";
     var creationSuccessfull = MyGameService.CreatePlayer(InputPlayerName, SelectedProfession);
     if (creationSuccessfull) await Shell.Current.GoToAsync($"{nameof(MainGameView)}", true);
     else await Shell.Current.DisplayAlert(

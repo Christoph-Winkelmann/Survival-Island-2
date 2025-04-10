@@ -27,7 +27,7 @@
         HorizontalOptions="Start"/>
       <Entry
         Placeholder="Robinson"
-        Text="{Binding Path=InputPlayerName, Mode=OneWayToSource}"/>
+        Text="{Binding InputPlayerName}"/>
     </VerticalStackLayout>
 
     <VerticalStackLayout

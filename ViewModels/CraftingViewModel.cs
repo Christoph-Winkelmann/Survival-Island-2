@@ -81,7 +81,12 @@ public partial class CraftingViewModel : BaseViewModel
     }
     SelectedCraftable = CraftableList[0];
     SelectedItemIsCraftable = ItemIsCraftable(SelectedCraftable);
+    gameService.DecreaseHunger(10);
     gameService.AdvanceDaytime(1);
+    if (gameService.CheckGameOver())
+    {
+      Shell.Current.GoToAsync(nameof(EndScreenView), true);
+    }
   }
 
   public bool ItemIsCraftable(Craftable craftable)

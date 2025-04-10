@@ -18,8 +18,11 @@
         Text="{Binding Title}"
         Style="{StaticResource Headline}"
         Grid.Row="0"/>
-      <partial:ResourceHeaderPartial
-        Grid.Row="1"/>
+      <Border
+        Padding="10"
+        Grid.Row="1">
+        <partial:ResourceHeaderPartial/>
+      </Border>
 
       <Grid
         Grid.Row="2"
