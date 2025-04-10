@@ -1,7 +1,6 @@
 ﻿namespace survival_island_2.Services;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Maui.Graphics.Text;
 using survival_island_2.Models;
 using survival_island_2.Views;
 using System.Collections.ObjectModel;
@@ -204,9 +203,6 @@ public partial class GameService : ObservableObject
     }
     else return false;
   }
-
-
-
 
   // Inventory Stuff
   public async Task HarvestResources(IslandLocation location, Player myPlayer)

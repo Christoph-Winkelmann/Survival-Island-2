@@ -7,9 +7,11 @@
              x:DataType="viewmodel:StatusViewModel"
              x:Class="survival_island_2.Views.StatusView"
              Title="{Binding Title}">
-  <VerticalStackLayout
+  
+  <Grid
+    RowDefinitions="*, auto"
     MaximumWidthRequest="640"
-    Spacing="20">
+    RowSpacing="20">
     <ScrollView
       VerticalScrollBarVisibility="Never">
       <VerticalStackLayout
@@ -162,6 +164,7 @@
     </ScrollView>
     <Button
       Text="Back"
-      Command="{Binding GoToMainGameViewCommand}"/>
-  </VerticalStackLayout>
+      Command="{Binding GoToMainGameViewCommand}"
+      Grid.Row="1"/>
+  </Grid>
 </ContentPage>
