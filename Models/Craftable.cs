@@ -11,11 +11,12 @@ public partial class Craftable : ObservableObject
   public double FibersCost { get; set; }
   public double StonesCost { get; set; }
   public double FoodCost { get; set; }
+  public string Description { get; set; } = String.Empty;
 
   [ObservableProperty]
   bool hasBeenCrafted = false;
 
-  public Craftable(int id, string craftableName, double logsCost, double sticksCost, double fibersCost, double stonesCost, double foodCost, bool hasBeenCrafted)
+  public Craftable(int id, string craftableName, double logsCost, double sticksCost, double fibersCost, double stonesCost, double foodCost, string description, bool hasBeenCrafted)
   {
     Id = id;
     CraftableName = craftableName;
@@ -24,6 +25,7 @@ public partial class Craftable : ObservableObject
     FibersCost = fibersCost;
     StonesCost = stonesCost;
     FoodCost = foodCost;
+    Description = description;
     HasBeenCrafted = hasBeenCrafted;
   }
 }

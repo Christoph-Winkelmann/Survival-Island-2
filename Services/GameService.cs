@@ -122,6 +122,7 @@ public partial class GameService : ObservableObject
       10,
       10,
       0,
+      "Axe for chopping trees and gathering logs.\nIncreases the amount of logs gathered when harvesting resources.",
       false),
     new Craftable(
       1,
@@ -131,6 +132,7 @@ public partial class GameService : ObservableObject
       50,
       0,
       20,
+      "Basket for gathering small resources.\nIncreases the amount of sticks, fibers and food gathered when harvesting resources.",
       false),
     new Craftable(
       2,
@@ -140,35 +142,40 @@ public partial class GameService : ObservableObject
       20,
       10,
       10,
+      "Campfire for cooking food.\nReduces the amount of food used when cooking.",
       false),
     new Craftable(
       3,
-      "Body",
+      "Raft Body",
       100,
       100,
       100,
       0,
       0,
+      "One of three parts needed to build a raft.\nPractically a bunch of logs tied together.",
       false),
     new Craftable(
       4,
-      "Sail",
+      "Raft Sail",
       50,
       50,
       200,
       0,
       0,
+      "One of three parts needed to build a raft.\nA sail to catch the wind and move faster.",
       false),
     new Craftable(
       5,
-      "Rations",
+      "Raft Rations",
       0,
       0,
       100,
       0,
       100,
+      "One of three parts needed to build a raft.\nA bunch of food to keep you alive.",
       false),
   };
+  public ObservableCollection<Craftable> AvailableItemsList { get; set; } = [];
   public string TimeOfDay { get; set; }
   public int CurrentDay { get; set; } = 1;
 
@@ -192,7 +199,6 @@ public partial class GameService : ObservableObject
 
 
 
-
   // Inventory Stuff
 
 
@@ -201,11 +207,11 @@ public partial class GameService : ObservableObject
     // implement cases where axe and/or basket are available
 
     // calculate yields based on location and player stats
-    var logsYield = Math.Floor(location.LogsMod * myPlayer.ForagingStat);
-    var sticksYield = Math.Floor(location.SticksMod * myPlayer.ForagingStat);
-    var fibersYield = Math.Floor(location.FibersMod * myPlayer.ForagingStat);
-    var stonesYield = Math.Floor(location.StonesMod * myPlayer.ForagingStat);
-    var foodYield = Math.Floor(location.FoodMod * myPlayer.ForagingStat);
+    var logsYield = Math.Floor(1000 * location.LogsMod * myPlayer.ForagingStat);
+    var sticksYield = Math.Floor(1000 * location.SticksMod * myPlayer.ForagingStat);
+    var fibersYield = Math.Floor(1000 * location.FibersMod * myPlayer.ForagingStat);
+    var stonesYield = Math.Floor(1000 * location.StonesMod * myPlayer.ForagingStat);
+    var foodYield = Math.Floor(1000 * location.FoodMod * myPlayer.ForagingStat);
 
     var newInventory = new Inventory()
     {
@@ -231,6 +237,26 @@ public partial class GameService : ObservableObject
       $"Fibers: +{fibersYield}\n" +
       $"Stones: +{stonesYield}\n" +
       $"Food: +{foodYield}";
+  }
+
+  public void SpendResources(Craftable craftable)
+  {
+    var newInventory = new Inventory()
+    {
+      LogsCount = ResourcesInventory.LogsCount,
+      SticksCount = ResourcesInventory.SticksCount,
+      FibersCount = ResourcesInventory.FibersCount,
+      StonesCount = ResourcesInventory.StonesCount,
+      FoodCount = ResourcesInventory.FoodCount,
+    };
+    // add yields to inventory
+    newInventory.LogsCount -= craftable.LogsCost;
+    newInventory.SticksCount -= craftable.SticksCost;
+    newInventory.FibersCount -= craftable.FibersCost;
+    newInventory.StonesCount -= craftable.StonesCost;
+    newInventory.FoodCount -= craftable.FoodCost;
+
+    ResourcesInventory = newInventory;
   }
 
 
