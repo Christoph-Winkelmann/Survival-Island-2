@@ -5,21 +5,82 @@
              x:DataType="viewmodel:CreditsViewModel"
              x:Class="survival_island_2.Views.CreditsView"
              Title="{Binding Title}">
-    <Grid
-        RowDefinitions="auto, auto, auto"
-        RowSpacing="20">
+  <VerticalStackLayout
+    Spacing="20"
+    MaximumWidthRequest="640">
+    <Label
+      Text="{Binding Title}"
+      Style="{StaticResource Headline}"/>
+    <Label
+      Text="To Do: Implement MarkdownView from CommunityToolkit..."
+      HorizontalOptions="Center"
+      Style="{StaticResource SubHeadline}"/>
+    <Border
+      Padding="20,10,20,20">
+      <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="5">
         <Label
-            Text="{Binding Title}"
-            Grid.Row="0"
-            Style="{StaticResource Headline}"/>
+          Text="Image Sources"
+          Style="{StaticResource SubHeadline}"/>
         <Label
-            Text="These will be the credits..."
-            Grid.Row="1"
-            HorizontalOptions="Center"/>
-        <Button
-            Text="Back"
-            Command="{Binding GoToMainMenuCommand}"
-            Grid.Row="2"
-            WidthRequest="200"/>
-    </Grid>
+          Text="GitHub Logo: https://github.com/logos">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Command="{Binding GoToHyperlinkCommand}"
+              CommandParameter="https://github.com/logos"/>
+          </Label.GestureRecognizers>
+        </Label>
+        <Label
+          Text="Locaton art generated with AI: https://deepai.org/">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Command="{Binding GoToHyperlinkCommand}"
+              CommandParameter="https://deepai.org/"/>
+          </Label.GestureRecognizers>
+        </Label>
+      </VerticalStackLayout>
+    </Border>
+    <Border
+      Padding="20,10,20,20">
+      <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="5">
+        <Label
+          Text="Software used for image editing"
+          Style="{StaticResource SubHeadline}"/>
+        <Label
+          Text="Krita: https://krita.org/de/">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Command="{Binding GoToHyperlinkCommand}"
+              CommandParameter="https://krita.org/de//"/>
+          </Label.GestureRecognizers>
+        </Label>
+      </VerticalStackLayout>
+    </Border>
+    <Border
+      Padding="20,10,20,20">
+      <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="5">
+        <Label
+          Text="Special Thanks"
+          Style="{StaticResource SubHeadline}"/>
+        <Label
+          Text="Tobias 'EvilWeasel' Wehrle: https://github.com/EvilWeasel">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Command="{Binding GoToHyperlinkCommand}"
+              CommandParameter="https://github.com/EvilWeasel"/>
+          </Label.GestureRecognizers>
+        </Label>
+      </VerticalStackLayout>
+    </Border>
+    <Button
+      Text="Back"
+      Command="{Binding GoToMainMenuCommand}"
+      Grid.Row="2"
+      WidthRequest="200"/>
+  </VerticalStackLayout>
 </ContentPage>

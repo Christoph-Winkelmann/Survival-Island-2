@@ -14,7 +14,7 @@
     Margin="0, 20, 0 ,20">
     <VerticalStackLayout
       x:Name="OuterFrame"
-      Spacing="20">
+      Spacing="15">
       <Border
         Padding="10">
         <Grid

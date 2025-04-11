@@ -15,4 +15,10 @@ public partial class CreditsViewModel : BaseViewModel
   {
     await Shell.Current.GoToAsync("..", true);
   }
+
+  [RelayCommand]
+  public async Task GoToHyperlink(string url)
+  {
+    await Launcher.OpenAsync(url);
+  }
 }

@@ -41,4 +41,10 @@ public partial class MainMenuViewModel : BaseViewModel
       "Yes");
     if (choice == "Yes") Environment.Exit(0);
   }
+
+  [RelayCommand]
+  public async Task GoToHyperlink(string url)
+  {
+    await Launcher.OpenAsync(url);
+  }
 }
